@@ -1,0 +1,96 @@
+## OVERVIEW:
+This database system appears to be designed for managing Randstad's recruitment operations and client relationships. It comprises four main components: `Dixi2`, which functions as a detailed repository for job applicant information, capturing everything from contact details and preferred roles to forklift licenses and background check comfort; `RDMasterlist`, serving as a comprehensive master list for corporate clients, categorizing them by industry, client group, and assigning key account personnel; `audit_log`, which diligently records system activities, specifically user-initiated data modifications; and `users`, which manages user authentication and roles within the system. Together, these tables enable Randstad to effectively track potential candidates, manage its corporate client portfolio, and maintain an auditable record of system changes, supporting their staffing and recruitment services.
+
+## DATABASE INFORMATION
+
+### Database Schema:
+
+### Table: `Dixi2`
+- Table Description: No description available.
+- `Timestamp`: **TIMESTAMP**
+- `full_name`: **STRING**
+- `contact_number_information`: **INTEGER**
+- `email`: **STRING**
+- `How_did_you_find_out_about_Randstad_`: **STRING**
+- `have_you_previously_worked_with_Randstad_Canada`: **BOOLEAN**
+- `If_you_answered_YES_to_the_previous_question_please_mention_the_clients_name_below`: **STRING**
+- `Are_you_legally_entitled_to_work_in_Canada_`: **STRING**
+- `what_role_you_are_interested_in___`: **STRING**
+- `what_forklift_licenses_you_hold_`: **STRING**
+- `our_client_requires_us_to_complete_a_criminal_background_check__are_you_comfortable_if_we_do_so_`: **BOOLEAN**
+- `have_you_registered_with_randstad_before_`: **BOOLEAN**
+- `what_location_are_you_interested_in_working_at_`: **STRING**
+- `What_is_your_method_of_transportation_`: **STRING**
+- `positions_interested_to_work`: **STRING**
+- `What_is_your_shift_preference_`: **STRING**
+- `when_are_you_available_to_start_`: **DATE**
+- `Tell_us_briefly_about_yourself__The_skillset_and_experience_you_possess_`: **STRING**
+- `please_upload_a_copy_of_your_resume`: **STRING**
+- `if_you_are_a_student__what_school_do_you_attend_`: **STRING**
+- `do_you_hold_a_valid_forklift_licence_`: **BOOLEAN**
+- `how_much_experience_do_you_have_working_with_an_order_picker_forklift_machine_`: **STRING**
+- `are_you_comfortable_driving_an_order_picker_forklift_machine_in_narrow_aisles_`: **BOOLEAN**
+- `are_you_familiar_with_wire_guidance_technology_center_lock_system_lock_system_in_an_order_picker_machine_`: **STRING**
+
+---
+## Table Data Samples:
+
+### Samples for table `Dixi2`:
+| Timestamp | full_name | contact_number_information | email | How_did_you_find_out_about_Randstad_ | have_you_previously_worked_with_Randstad_Canada | If_you_answered_YES_to_the_previous_question_please_mention_the_clients_name_below | Are_you_legally_entitled_to_work_in_Canada_ | what_role_you_are_interested_in___ | what_forklift_licenses_you_hold_ | our_client_requires_us_to_complete_a_criminal_background_check__are_you_comfortable_if_we_do_so_ | have_you_registered_with_randstad_before_ | what_location_are_you_interested_in_working_at_ | What_is_your_method_of_transportation_ | positions_interested_to_work | What_is_your_shift_preference_ | when_are_you_available_to_start_ | Tell_us_briefly_about_yourself__The_skillset_and_experience_you_possess_ | please_upload_a_copy_of_your_resume | if_you_are_a_student__what_school_do_you_attend_ | do_you_hold_a_valid_forklift_licence_ | how_much_experience_do_you_have_working_with_an_order_picker_forklift_machine_ | are_you_comfortable_driving_an_order_picker_forklift_machine_in_narrow_aisles_ | are_you_familiar_with_wire_guidance_technology_center_lock_system_lock_system_in_an_order_picker_machine_ |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2025-03-05 15:00:00+00:00 | MD AKTARUL ISLAM | 4377075699 | akhtarislam1035@gmail | None | True | None | None | None | None | True | None | mississauga | ride sharing | full - time | mornings | 2025-03-05 | None | None | None | True | 12+ month | True | no |
+| 2025-05-09 12:34:00+00:00 | Amanpreet Kaur Atwal | 4384839370 | aatwal383@gmail.com | google | False | None | None | None | not applicable | True | None | brampton | car | part time | weekend | 2025-05-11 | None | None | None | False | none | False | no |
+| 2025-06-19 12:16:00+00:00 | Ramanjo | 6475427841 | Ramanjotk27@gmail.com | randstad.ca | False | None | None | administration | not applicable | True | None | brampton | car | full - time | mornings | None | None | https://drive.google.com/open?id=1a2UdGbZ4IC9NKg-U_JnD1qlJJqG-yv_m | None | False | 0 - 12 months | True | yes |
+
+---
+## Column Data Analysis:
+
+### Analysis of Table `Dixi2`:
+- **Timestamp**: Date/Time. MIN=`2025-01-01 15:13:00+00:00`, MAX=`2025-09-08 16:29:00+00:00`, Distinct Values=`7688`
+- **full_name**: Text. Distinct Values=`5705`. Top values: `Manpreet Kaur` (54), `Manpreet kaur` (43), `Harpreet Kaur` (37), `Ramandeep Kaur` (32), `Amandeep kaur` (31)
+- **contact_number_information**: Numeric. MIN=`437214495`, MAX=`67478092807`, AVG=`5445502071.79`, Distinct Values=`8198`
+- **email**: Text. Distinct Values=`8306`. Top values: `Kaur` (5), `Singh` (3), `Harmnsahi@gmail.com` (2), `harshidapatel1285@gmail.com` (2), `bhumivikrampatel@gmail.com` (2)
+- **How_did_you_find_out_about_Randstad_**: Text. Distinct Values=`7`. Top values: `randstad.ca` (4055), `candidate referral` (2628), `google` (1156), `indeed` (448), `kijiji` (23)
+- **If_you_answered_YES_to_the_previous_question_please_mention_the_clients_name_below**: Text. Distinct Values=`740`. Top values: `No` (146), `TJX` (53), `Yes` (41), `Tjx` (41), `N/A` (37)
+- **Are_you_legally_entitled_to_work_in_Canada_**: Text. Distinct Values=`7`. Top values: `Yes - I have a valid work permit + SIN9` (3870), `Yes - I am a permanent resident/citizen` (1975), `Yes - I am on implied/applied status` (1544), `Yes - I have a student permit + SIN9` (985), `Yes - I have a Sudy permit+Sin` (1)
+- **what_role_you_are_interested_in___**: Text. Distinct Values=`34`. Top values: `warehouse associate` (3278), `warehouse associate, administration, skilled trades, data analysis` (816), `warehouse associate, forklift operator` (746), `warehouse associate, administration` (617), `warehouse associate, skilled trades` (601)
+- **what_forklift_licenses_you_hold_**: Text. Distinct Values=`9`. Top values: `not applicable` (4682), `all of the above` (1285), `counterbalance` (369), `orderpicker` (153), `walkie` (130)
+- **our_client_requires_us_to_complete_a_criminal_background_check__are_you_comfortable_if_we_do_so_**: Boolean.
+- **have_you_registered_with_randstad_before_**: Boolean.
+- **what_location_are_you_interested_in_working_at_**: Text. Distinct Values=`7`. Top values: `anywhere in GTA` (5341), `brampton` (1888), `mississauga` (1127), `Missisauga , Brampton, GTA ` (1), `Mississauga / Brampton` (1)
+- **What_is_your_method_of_transportation_**: Text. Distinct Values=`4`. Top values: `car` (4913), `bus` (2479), `ride sharing` (974), `Bus` (2)
+- **positions_interested_to_work**: Text. Distinct Values=`4`. Top values: `full - time` (7754), `part time` (616), `full - time / part time` (1), `Full time` (1)
+- **What_is_your_shift_preference_**: Text. Distinct Values=`7`. Top values: `mornings` (4828), `afternoons` (2037), `midnights` (862), `weekend` (560), `Any shift` (1)
+- **when_are_you_available_to_start_**: Date/Time. MIN=`0205-03-24`, MAX=`2935-05-30`, Distinct Values=`592`
+- **Tell_us_briefly_about_yourself__The_skillset_and_experience_you_possess_**: Text. Distinct Values=`6415`. Top values: `Yes` (23), `General labour` (20), `Warehouse experience` (15), `Warehouse associate` (15), `Warehouse` (12)
+- **please_upload_a_copy_of_your_resume**: Text. Distinct Values=`5199`. Top values: `https://drive.google.com/open?id=1DUNFUfJZ-AcbkTcS8gWLmTGUe30k-QOS` (1), `https://drive.google.com/open?id=1a2UdGbZ4IC9NKg-U_JnD1qlJJqG-yv_m` (1), `https://drive.google.com/open?id=1cEZTS8dIIqIZm2sd-vVo-Vosnjhb-qu3` (1), `https://drive.google.com/open?id=1nxJ-uNatj6pTuUlGU20VcoXnjzL4rbfs` (1), `https://drive.google.com/open?id=1Uk05SJLA4ruxoBsEmqgvS_602wxroORC` (1)
+- **if_you_are_a_student__what_school_do_you_attend_**: Text. Distinct Values=`661`. Top values: `No` (322), `Sheridan college` (84), `N/A` (55), `Algoma University` (44), `Humber college` (42)
+- **do_you_hold_a_valid_forklift_licence_**: Boolean.
+- **how_much_experience_do_you_have_working_with_an_order_picker_forklift_machine_**: Text. Distinct Values=`3`. Top values: `none` (6283), `0 - 12 months` (1187), `12+ month` (927)
+- **are_you_comfortable_driving_an_order_picker_forklift_machine_in_narrow_aisles_**: Boolean.
+- **are_you_familiar_with_wire_guidance_technology_center_lock_system_lock_system_in_an_order_picker_machine_**: Text. Distinct Values=`3`. Top values: `no` (4303), `yes` (2308), `somewhat familiar` (1786)
+
+---
+## IMPORTANT BIGQUERY NOTES:
+*   Always use backticks (\`) for table names and column names, especially if they contain spaces or special characters, or if they are BigQuery reserved keywords. For example: `` `your_project_id.your_dataset_id.Dixi2` `` or `` `full_name` ``.
+*   String literals must always be enclosed in single quotes ('). For example: `WHERE role = 'admin'`.
+*   When querying across multiple tables, use explicit `JOIN` clauses (e.g., `INNER JOIN`, `LEFT JOIN`) on relevant keys to combine data.
+*   Utilize the `LIKE` operator for partial string matching, often in conjunction with the `%` wildcard. For example: `WHERE `what_role_you_are_interested_in___` LIKE '%warehouse associate%'`.
+*   BigQuery provides powerful date and time functions. Examples include `FORMAT_TIMESTAMP('%Y-%m-%d', timestamp_column)` for formatting, `DATE_TRUNC(date_column, YEAR)` for truncating dates, and `EXTRACT(YEAR FROM date_column)` for extracting components.
+*   Always use fully qualified table names in the format: `` `your_project_id.your_dataset_id.table_name` ``. Replace `your_project_id` and `your_dataset_id` with the actual project and dataset where the tables reside.
+*   For query optimization and cost reduction in BigQuery, consider filtering by partitioning columns (if available) as early as possible in your `WHERE` clause. While not explicitly defined in the provided schema, if tables were partitioned (e.g., by date), a filter like `WHERE _PARTITIONDATE = '2023-01-01'` would significantly reduce the data scanned.
+*   BigQuery is case-insensitive for unquoted identifiers (table names, column names) but case-sensitive for string values. It's best practice to match the casing of column names as they appear in the schema.
+
+## EXAMPLES:
+
+**Question:** "Count the number of job applicants per recruitment source and their preferred role, for applicants legally entitled to work in Canada who are available to start in 2025."
+**SQL Query:** `SELECT `How_did_you_find_out_about_Randstad_`, `what_role_you_are_interested_in___`, COUNT(*) AS `applicant_count` FROM `your_project_id.your_dataset_id.Dixi2` WHERE `Are_you_legally_entitled_to_work_in_Canada_` LIKE 'Yes%' AND EXTRACT(YEAR FROM `when_are_you_available_to_start_`) = 2025 GROUP BY `How_did_you_find_out_about_Randstad_`, `what_role_you_are_interested_in___` ORDER BY `applicant_count` DESC;`
+
+**Question:** "Retrieve the names, emails, and contact numbers of candidates who hold 'counterbalance' forklift licenses, have '12+ month' experience with an order picker, and are comfortable driving in narrow aisles."
+**SQL Query:** `SELECT `full_name`, `email`, `contact_number_information` FROM `your_project_id.your_dataset_id.Dixi2` WHERE `what_forklift_licenses_you_hold_` LIKE '%counterbalance%' AND `how_much_experience_do_you_have_working_with_an_order_picker_forklift_machine_` = '12+ month' AND `are_you_comfortable_driving_an_order_picker_forklift_machine_in_narrow_aisles_` IS TRUE;`
+
+**Question:** "Identify the top 3 preferred working locations requested by candidates interested in 'full - time' positions and 'mornings' shifts, who found out about Randstad through 'google' or 'indeed'."
+**SQL Query:** `SELECT `what_location_are_you_interested_in_working_at_`, COUNT(*) AS `candidate_count` FROM `your_project_id.your_dataset_id.Dixi2` WHERE `positions_interested_to_work` = 'full - time' AND `What_is_your_shift_preference_` = 'mornings' AND `How_did_you_find_out_about_Randstad_` IN ('google', 'indeed') GROUP BY `what_location_are_you_interested_in_working_at_` ORDER BY `candidate_count` DESC LIMIT 3;`
+
+**Question:** "Determine the total count of candidates who have previously worked with Randstad, have registered before, are comfortable with a criminal background check, and are interested in roles that include 'warehouse associate'."
+**SQL Query:** `SELECT COUNT(*) AS `qualified_candidate_count` FROM `your_project_id.your_dataset_id.Dixi2` WHERE `have_you_previously_worked_with_Randstad_Canada` IS TRUE AND `have_you_registered_with_randstad_before_` IS TRUE AND `our_client_requires_us_to_complete_a_criminal_background_check__are_you_comfortable_if_we_do_so_` IS TRUE AND `what_role_you_are_interested_in___` LIKE '%warehouse associate%';`

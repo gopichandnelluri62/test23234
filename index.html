@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dixie Agent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 m-4">
+        <h1 class="text-2xl font-bold text-center mb-6">Dixie Agent</h1>
+        
+        <!-- Chat History -->
+        <div id="chat-history" class="h-96 overflow-y-auto mb-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-700">
+            <div class="flex items-start mb-4">
+                <div class="bg-blue-500 text-white rounded-xl p-3 shadow-md">
+                    Hello! I am Dixie, an AI recruiting assistant. To get started, please enter your Cloud Run Service URL in the box below.
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <div class="flex items-center space-x-2">
+            <input type="text" id="user-input" placeholder="Type your Cloud Run URL or message..." class="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900">
+            <button id="send-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200 ease-in-out">
+                Connect
+            </button>
+        </div>
+        
+    </div>
+
+    <script>
+        const chatHistory = document.getElementById('chat-history');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        let cloudRunUrl = null;
+
+        // Function to create a message bubble
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex mb-4 ${isUser ? 'justify-end' : 'justify-start'}`;
+            
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = `max-w-md p-3 rounded-xl shadow-md ${isUser ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-gray-600 text-gray-900 dark:text-white'}`;
+            bubbleDiv.textContent = text;
+            
+            messageDiv.appendChild(bubbleDiv);
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
+        }
+
+        async function sendMessage() {
+            const input = userInput.value.trim();
+            if (!input) return;
+
+            if (!cloudRunUrl) {
+                // First, connect to the URL
+                cloudRunUrl = input;
+                addMessage(`Connecting to: ${cloudRunUrl}`, true);
+                addMessage("Connected! You can now send messages to the agent.", false);
+                sendButton.textContent = "Send";
+                userInput.value = "";
+                return;
+            }
+
+            const query = input;
+            addMessage(query, true); // Add user's message to chat
+            userInput.value = ''; // Clear input field
+
+            // Show a loading indicator
+            addMessage("Thinking...", false);
+            const thinkingMessage = chatHistory.lastChild.querySelector('div');
+            
+            try {
+                const apiPath = '/agent';
+
+                const response = await fetch(cloudRunUrl + apiPath, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: query })
+                });
+
+                const data = await response.json();
+
+                // Remove loading indicator and display actual response
+                chatHistory.removeChild(chatHistory.lastChild);
+                if (response.ok) {
+                    addMessage(data.response, false);
+                } else {
+                    addMessage(`Error: ${data.error}`, false);
+                }
+
+            } catch (error) {
+                chatHistory.removeChild(chatHistory.lastChild);
+                addMessage(`An error occurred: ${error.message}`, false);
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
